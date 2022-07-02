@@ -1,0 +1,27 @@
+.container {
+    box-shadow: 0 0 15px #ddd;
+    flex: 1;
+    margin-right: 20px;
+    max-width: 90%;
+    max-height: 200px;
+    div {
+        padding: 20px;
+    }
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 720px) {
+    .container {
+        div {
+            padding: 15px;
+        }
+        width: 100%;
+        margin: 10px auto;
+        font-size: 1.5rem;
+    }
+}

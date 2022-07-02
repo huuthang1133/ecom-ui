@@ -1,5 +1,7 @@
+import Auth from '~/components/Auth';
+
 function Register() {
-    return <h1>Register</h1>;
+    return <Auth register />;
 }
 
 export default Register;

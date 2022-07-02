@@ -1,0 +1,50 @@
+.container {
+    flex: 1;
+    padding: 20px;
+    box-shadow: 0 0 15px #ddd;
+}
+
+.mobile {
+    display: none;
+}
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.date {
+    width: 20%;
+}
+
+.images {
+    width: 100px;
+}
+
+.items {
+    width: 50%;
+}
+
+.total {
+    width: 10%;
+}
+
+h3 {
+    margin: 0px;
+    text-align: center;
+}
+
+@media (max-width: 720px) {
+    .container {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+    .mobile {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+}

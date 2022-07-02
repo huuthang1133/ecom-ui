@@ -4,10 +4,24 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ to, href, disabled = false, children, className, onClick, ...passProps }) {
+function Button({
+    to,
+    href,
+    disabled = false,
+    children,
+    large = false,
+    className,
+    medium = false,
+    rounded = false,
+    onClick,
+    type,
+    normal,
+    ...passProps
+}) {
     let Comp = 'button';
     const props = {
         onClick,
+        type,
         ...passProps,
     };
 
@@ -29,6 +43,10 @@ function Button({ to, href, disabled = false, children, className, onClick, ...p
     const classes = cx('wrapper', {
         [className]: className,
         disabled,
+        large,
+        medium,
+        normal,
+        rounded,
     });
     return (
         <Comp className={classes} {...props}>

@@ -6,10 +6,18 @@ header {
     justify-content: space-around;
     align-items: center;
     border-bottom: solid #e0d7d7 1px;
+    text-transform: uppercase;
     a {
         text-decoration: none;
         color: var(--default-textcolor-menu);
     }
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 3;
 }
 
 .menu-icon {
@@ -17,14 +25,30 @@ header {
 }
 
 .logo {
-    flex: 1;
+    flex: 4;
     font-size: 3.5rem;
     font-weight: 600;
+    &:hover {
+        color: var(--default-textcolor);
+    }
+}
+
+.user {
+    flex: 3;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+        margin: 0 auto;
+    }
 }
 
 .login {
+    display: flex;
+    justify-content: center;
     font-weight: 600;
-    padding: 0 40px;
+    padding: 0 30px 0 10px;
 
     &:hover {
         color: var(--default-textcolor);

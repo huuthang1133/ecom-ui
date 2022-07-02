@@ -23,3 +23,29 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
+
+// CSS REACT SLICK
+.slick-next .slick-prev {
+    color: #555;
+}
+
+.slick-next {
+    right: 0;
+}
+
+.slick-prev {
+    left: 0;
+}
+
+* .slick-next:before,
+.slick-prev:before {
+    color: grey;
+    font-size: 2.4rem;
+}
+
+@media (max-width: 720px) {
+    .slick-next:before,
+    .slick-prev:before {
+        display: none;
+    }
+}

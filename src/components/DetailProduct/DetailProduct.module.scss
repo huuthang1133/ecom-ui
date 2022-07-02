@@ -1,0 +1,139 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+}
+
+.wrapper {
+    h2 {
+        color: '#5c5656';
+        margin-top: '30px';
+    }
+}
+
+.image {
+    width: 50%;
+    img {
+        width: 100%;
+        padding: 20px;
+    }
+    flex: 1;
+    border: 1px solid #eddfdf;
+    margin: 20px 0 0 20px;
+}
+
+.product-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-transform: capitalize;
+    margin: 20px 0 0 60px;
+    padding: 10px;
+}
+
+.product-category {
+    color: white;
+    background-color: black;
+    // width: 120px;
+    white-space: nowrap;
+    max-width: 150px;
+    height: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+        text-transform: uppercase;
+    }
+}
+
+.product-title {
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+.product-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0 0 15px 0;
+    color: #565959;
+    font-weight: bold;
+    div {
+        display: flex;
+        align-items: center;
+    }
+    .main-price-number {
+        color: red;
+        font-size: 2.8rem;
+        margin-right: 20px;
+    }
+    .price-number {
+        text-decoration: line-through;
+        font-size: 1.8rem;
+    }
+    .product-flashsale {
+        background-color: red;
+        color: white;
+        width: 45px;
+        height: 30px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.product-description {
+    margin: 15px 0px;
+    line-height: 1.5;
+    height: 150px;
+    text-align: justify;
+    overflow: hidden;
+}
+
+.product-outstock {
+    color: red;
+    font-size: 2rem;
+}
+
+@media (max-width: 720px) {
+    .wrapper {
+        font-size: 1.2rem;
+        display: block;
+        // h2 {
+        //     margin: 5px;
+        // }
+    }
+
+    .image {
+        width: 100%;
+        img {
+            width: 100%;
+            padding: 20px;
+        }
+        flex: 1;
+        border: 1px solid #eddfdf;
+        margin: 20px 0px;
+    }
+
+    .product-box {
+        display: flex;
+        margin: 10px;
+        padding: 5px;
+    }
+
+    .product-title {
+        line-height: 1.2;
+        margin: 10px 0;
+        text-align: justify;
+    }
+
+    .product-description {
+        margin: 5px;
+    }
+}
