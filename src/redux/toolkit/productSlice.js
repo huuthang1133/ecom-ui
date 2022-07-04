@@ -18,6 +18,7 @@ export const getProducts = createAsyncThunk('products/getProducts', async (paylo
         });
         return res.data.products;
     } catch (err) {
+        console.log(err);
         return thunkAPI.rejectWithValue(err.response.data.message);
     }
 });
