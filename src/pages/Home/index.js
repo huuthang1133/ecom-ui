@@ -8,7 +8,6 @@ import LoadMore from '~/components/LoadMore';
 import ProductCard from '~/components/ProductCard';
 import { useDebounce } from '~/hooks';
 import { addCart } from '~/redux/toolkit/cartSlice';
-import { getCategories } from '~/redux/toolkit/categorySlice';
 import { getProducts } from '~/redux/toolkit/productSlice';
 import { createAxios } from '~/ultils/authenticated';
 import Loading from '~/ultils/loading';
@@ -64,7 +63,7 @@ function Home() {
                             {!products.length && loading ? (
                                 <Loading />
                             ) : (
-                                products.map((product) => (
+                                products?.map((product) => (
                                     <ProductCard
                                         key={product._id}
                                         disabled={!product.quantity && true}

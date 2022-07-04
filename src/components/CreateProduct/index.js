@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getProducts } from '~/redux/toolkit/productSlice';
 import { createAxios } from '~/ultils/authenticated';
 import Loading from '~/ultils/loading';

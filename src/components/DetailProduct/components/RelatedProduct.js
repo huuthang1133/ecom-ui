@@ -11,7 +11,7 @@ function RelatedProduct({ products, onClick }) {
     const settings = {
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: products.length < 3 ? products.length : 3,
         slidesToScroll: 1,
         autoplay: true,
         responsive: [
@@ -26,6 +26,7 @@ function RelatedProduct({ products, onClick }) {
             },
         ],
     };
+
     return (
         <div className={cx('wrapper')}>
             {products ? (

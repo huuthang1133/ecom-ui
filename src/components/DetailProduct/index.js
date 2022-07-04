@@ -9,6 +9,7 @@ import styles from './DetailProduct.module.scss';
 import { useDispatch } from 'react-redux';
 import { addCart } from '~/redux/toolkit/cartSlice';
 import { createAxios } from '~/ultils/authenticated';
+import httpRequest from '~/ultils/httpRequest';
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,7 @@ function DetailProduct() {
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProducts] = useState([]);
     const navigate = useNavigate();
-    const flashsale = 45;
+    const flashsale = 0.4;
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartState);
     let axiosJWT = createAxios(authState, dispatch);
@@ -33,6 +34,17 @@ function DetailProduct() {
         if (id) {
             if (products.length) {
                 const detailProduct = products.find((_product) => _product._id === id);
+                if (!detailProduct) {
+                    const fetchProduct = async () => {
+                        try {
+                            const res = await httpRequest.get(`/product/${id}`);
+                            setProduct(res.data);
+                        } catch (err) {
+                            alert(err.response.data.msg);
+                        }
+                    };
+                    fetchProduct();
+                }
                 setProduct(detailProduct);
                 if (detailProduct) {
                     const index = detailProduct.category.products.findIndex((product) => product._id === id);
@@ -46,7 +58,7 @@ function DetailProduct() {
         }
     }, [id, products, cart]);
 
-    if (product.title)
+    if (product?.title)
         return (
             <>
                 <div className={cx('wrapper')}>
@@ -62,8 +74,11 @@ function DetailProduct() {
 
                         <div className={cx('product-price')}>
                             <div>
-                                <span className={cx('main-price-number')}>{(product.price * flashsale) / 100}$</span>
-                                <span className={cx('price-number')}> {product.price}$</span>
+                                <span className={cx('main-price-number')}>{product.price}$</span>
+                                <span className={cx('price-number')}>
+                                    {' '}
+                                    {Math.round(product.price / (1 - flashsale), 0)}$$
+                                </span>
                             </div>
                             <div className={cx('product-flashsale')}>
                                 <span>{flashsale}%</span>

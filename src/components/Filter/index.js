@@ -30,7 +30,7 @@ function Filter({ props }) {
                 <span>Filters: </span>
                 <select name="category" value={category} onChange={handleCategory}>
                     <option value="">All Products</option>
-                    {categories.map((category) => (
+                    {categories?.map((category) => (
                         <option value={category._id} key={category._id}>
                             {category.name}
                         </option>

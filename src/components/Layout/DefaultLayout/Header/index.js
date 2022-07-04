@@ -1,9 +1,9 @@
-import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCartShopping, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import config from '~/config';
 import { logout } from '~/redux/toolkit/authSlice';
@@ -17,11 +17,6 @@ function Header() {
     const cartState = useSelector((state) => state.cartState);
     const authState = useSelector((state) => state.authState);
     const dispatch = useDispatch();
-
-    const handleLogout = (e) => {
-        navigate('/login');
-        dispatch(logout());
-    };
 
     const menu = [
         {
@@ -38,9 +33,56 @@ function Header() {
         },
     ];
 
+    const handleLogout = (e) => {
+        handleCloseMenuMobile();
+        navigate('/login');
+        dispatch(logout());
+    };
+
     const handleMenuMobile = (e) => {
         setMenuMobile(true);
     };
+
+    const handleCloseMenuMobile = (e) => {
+        setMenuMobile(false);
+    };
+
+    const renderMenuMobile = () => (
+        <div className={cx('menu-mobile')}>
+            {authState.data?._user?.role === 1 ? (
+                <>
+                    {menu.map((item) => (
+                        <NavLink to={item.path} onClick={handleCloseMenuMobile}>
+                            {item.name}
+                        </NavLink>
+                    ))}
+                    <Button normal onClick={handleLogout}>
+                        LOG OUT
+                    </Button>
+                </>
+            ) : authState.data?._user ? (
+                <>
+                    <NavLink to={config.routes.profile} onClick={handleCloseMenuMobile}>
+                        {authState.data?._user.name}
+                    </NavLink>
+                    <Button normal onClick={handleLogout}>
+                        LOG OUT
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <NavLink to={config.routes.home} onClick={handleCloseMenuMobile}>
+                        SHOP
+                    </NavLink>
+                    <NavLink to={config.routes.login} onClick={handleCloseMenuMobile}>
+                        LOG IN
+                    </NavLink>
+                </>
+            )}
+            <FontAwesomeIcon className={cx('icon')} icon={faClose} onClick={handleCloseMenuMobile} />
+        </div>
+    );
+
     return (
         <header className={cx('header')}>
             <FontAwesomeIcon icon={faBars} className={cx('menu-icon')} onClick={handleMenuMobile} />
@@ -87,6 +129,7 @@ function Header() {
                     </div>
                 </div>
             </Link>
+            {menuMobile && renderMenuMobile()}
         </header>
     );
 }

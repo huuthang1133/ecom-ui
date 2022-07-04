@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import validator from 'validator';
 import Button from '~/components/Button';
 import { userLogin, userRegister, userUpdate } from '~/redux/toolkit/authSlice';
@@ -37,8 +36,6 @@ function Auth({ login = false, register = false, modal = false, className, setOp
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let axiosJWT = createAxios(authState, dispatch);
-
-    const { data, loading, error } = useSelector((state) => state.authState);
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;

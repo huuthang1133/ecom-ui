@@ -26,7 +26,7 @@ function ProductCard({ disabled, product, NoButton = false, to = false, onClick 
         to,
     });
 
-    const flashsale = 45;
+    const flashsale = 0.4;
 
     return (
         <div className={cx('product-card')}>
@@ -43,11 +43,11 @@ function ProductCard({ disabled, product, NoButton = false, to = false, onClick 
                         </div>
                         <h4 className={cx('product-price')}>
                             <div>
-                                <span className={cx('main-price-number')}>{(price * flashsale) / 100}$</span>
-                                <span className={cx('price-number')}> {price}$</span>
+                                <span className={cx('main-price-number')}>{price}$</span>
+                                <span className={cx('price-number')}> {Math.round(price / (1 - flashsale), 0)}$</span>
                             </div>
                             <div className={cx('product-flashsale')}>
-                                <span>{flashsale}%</span>
+                                <span>{flashsale * 100}%</span>
                             </div>
                         </h4>
                         <div className={classes}>{description}</div>
@@ -79,11 +79,11 @@ function ProductCard({ disabled, product, NoButton = false, to = false, onClick 
                         </div>
                         <h4 className={cx('product-price')}>
                             <div>
-                                <span className={cx('main-price-number')}>{(price * flashsale) / 100}$</span>
-                                <span className={cx('price-number')}> {price}$</span>
+                                <span className={cx('main-price-number')}>{price}$</span>
+                                <span className={cx('price-number')}> {Math.round(price / (1 - flashsale), 0)}$</span>
                             </div>
                             <div className={cx('product-flashsale')}>
-                                <span>{flashsale}%</span>
+                                <span>{flashsale * 100}%</span>
                             </div>
                         </h4>
                         <div className={classes}>{description}</div>

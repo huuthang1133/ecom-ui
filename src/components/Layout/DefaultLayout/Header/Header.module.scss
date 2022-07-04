@@ -77,6 +77,35 @@ header {
     color: var(--default-textcolor);
 }
 
+.menu-mobile {
+    .icon {
+        position: absolute;
+        right: 0px;
+        padding-right: 15px;
+    }
+
+    a {
+        margin: 10px 0;
+    }
+
+    button {
+        margin-left: -14px;
+    }
+    box-shadow: 0 0 15px #ddd;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-height: 200px;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    position: absolute;
+    font-weight: bold;
+    justify-content: space-between;
+    background-color: white;
+    z-index: 100;
+}
+
 // Responsize
 // Mobile
 @media screen and (max-width: 720px) {
@@ -86,7 +115,7 @@ header {
     .menu-icon {
         display: block;
     }
-    .login {
+    .menu {
         display: none;
     }
     .logo {

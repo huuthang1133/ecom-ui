@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as httpRequest from '~/ultils/httpRequest';
-import { notifyError } from '~/ultils/notify';
 
 export const getPayment = createAsyncThunk('payment/getpayment', async (payload, thunkAPI) => {
     const { axiosJWT } = payload;
