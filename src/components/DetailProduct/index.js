@@ -81,7 +81,7 @@ function DetailProduct() {
                                 </span>
                             </div>
                             <div className={cx('product-flashsale')}>
-                                <span>{flashsale}%</span>
+                                <span>{flashsale * 100}%</span>
                             </div>
                         </div>
                         <div className={cx('product-description')}>{product.description}</div>
