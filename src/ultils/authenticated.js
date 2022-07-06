@@ -5,7 +5,9 @@ import * as httpRequest from './httpRequest';
 
 export const refreshToken = async () => {
     try {
-        const res = await httpRequest.get(`refresh_token`);
+        const res = await httpRequest.get(`refresh_token`, {
+            withCredentials: true,
+        });
         return res;
     } catch (err) {
         return err;
