@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
@@ -18,7 +19,9 @@ function Button({
     normal,
     ...passProps
 }) {
+    console.log('button');
     let Comp = 'button';
+
     const props = {
         onClick,
         type,
@@ -32,6 +35,7 @@ function Button({
             }
         });
     }
+
     if (to) {
         props.to = to;
         Comp = Link;
@@ -56,4 +60,4 @@ function Button({
     );
 }
 
-export default Button;
+export default memo(Button);

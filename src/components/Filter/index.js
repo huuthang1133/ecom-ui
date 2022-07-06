@@ -14,6 +14,7 @@ function Filter({ props }) {
     const handleCategory = (e) => {
         setCategory(e.target.value);
     };
+
     const handleChangeInput = (e) => {
         const search = e.target.value;
         if (!search.startsWith(' ')) {

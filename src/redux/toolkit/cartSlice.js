@@ -9,12 +9,13 @@ const initialState = {
     error: null,
 };
 
-export const addCart = createAsyncThunk('cart/addcart', async (payload, thunkAPI) => {
-    const { cartState, product, axiosJWT, navigate, dispatch } = payload;
+export const addCart = createAsyncThunk('cart/addcart', async (payload, { getState, dispatch, rejectWithValue }) => {
+    const { product, axiosJWT, navigate } = payload;
     try {
         const res = await axiosJWT.get('infor');
         const { data } = res;
         if (data) {
+            const { cartState } = getState();
             const index = cartState.data.findIndex((_product) => _product._id === product._id);
             if (index > -1) {
                 const newCart = cartState.data.map((_product, i) => {
@@ -30,24 +31,23 @@ export const addCart = createAsyncThunk('cart/addcart', async (payload, thunkAPI
         dispatch(logout());
         navigate('/login');
         if (!err.response) {
-            return thunkAPI.rejectWithValue(err.message);
+            return rejectWithValue(err.message);
         }
-        return thunkAPI.rejectWithValue(err.response.data.msg);
+        return rejectWithValue(err.response.data.msg);
     }
 });
 
-export const CheckOut = createAsyncThunk('cart/checkout', async (payload, thunkAPI) => {
-    const { cartState, axiosJWT, dispatch } = payload;
+export const CheckOut = createAsyncThunk('cart/checkout', async (payload, { getState, dispatch, rejectWithValue }) => {
+    const { axiosJWT } = payload;
     try {
         const res = await axiosJWT.post(`payment`, {
-            cart: cartState.data,
+            cart: getState().cartState.data,
         });
         notifySuccess(res.data.msg);
         dispatch(getProducts());
         return [];
     } catch (err) {
-        console.log(err);
-        return thunkAPI.rejectWithValue(err.response.data.msg);
+        return rejectWithValue(err.response.data.msg);
     }
 });
 

@@ -1,7 +1,7 @@
 import { faBars, faCartShopping, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
@@ -134,4 +134,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default memo(Header);

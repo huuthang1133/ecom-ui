@@ -17,17 +17,15 @@ function DetailProduct() {
     const { id } = useParams();
     const { data: products } = useSelector((state) => state.productState);
     const authState = useSelector((state) => state.authState);
-    const cartState = useSelector((state) => state.cartState);
     const [product, setProduct] = useState({});
     const [relatedProduct, setRelatedProducts] = useState([]);
     const navigate = useNavigate();
     const flashsale = 0.4;
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cartState);
     let axiosJWT = createAxios(authState, dispatch);
 
     const handleAddToCart = async (product) => {
-        dispatch(addCart({ cartState, product, axiosJWT, navigate, dispatch }));
+        dispatch(addCart({ product, axiosJWT, navigate, dispatch }));
     };
 
     useEffect(() => {
@@ -56,7 +54,7 @@ function DetailProduct() {
                 }
             }
         }
-    }, [id, products, cart]);
+    }, [id, products]);
 
     if (product?.title)
         return (
@@ -76,7 +74,6 @@ function DetailProduct() {
                             <div>
                                 <span className={cx('main-price-number')}>{product.price}$</span>
                                 <span className={cx('price-number')}>
-                                    {' '}
                                     {Math.round(product.price / (1 - flashsale), 0)}$$
                                 </span>
                             </div>

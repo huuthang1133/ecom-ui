@@ -48,8 +48,8 @@ export const userRegister = createAsyncThunk('auth/register', async (payload, th
     }
 });
 
-export const authenticate = createAsyncThunk('auth/authenticate', async (payload, thunkAPI) => {
-    const { params, axiosJWT, navigate, dispatch } = payload;
+export const authenticate = createAsyncThunk('auth/authenticate', async (payload, { dispatch, rejectWithValue }) => {
+    const { params, axiosJWT, navigate } = payload;
     if (params === 'infor') {
         try {
             const res = await axiosJWT.get(params);
@@ -58,8 +58,8 @@ export const authenticate = createAsyncThunk('auth/authenticate', async (payload
             dispatch(logout());
             navigate('/login');
             if (!err.response) {
-                return thunkAPI.rejectWithValue(err.message);
-            } else return thunkAPI.rejectWithValue(err.response.data.msg);
+                return rejectWithValue(err.message);
+            } else return rejectWithValue(err.response.data.msg);
         }
     } else {
         try {
@@ -68,8 +68,8 @@ export const authenticate = createAsyncThunk('auth/authenticate', async (payload
         } catch (err) {
             navigate('/');
             if (!err.response) {
-                return thunkAPI.rejectWithValue(err.message);
-            } else return thunkAPI.rejectWithValue(err.response.data.msg);
+                return rejectWithValue(err.message);
+            } else return rejectWithValue(err.response.data.msg);
         }
     }
 });

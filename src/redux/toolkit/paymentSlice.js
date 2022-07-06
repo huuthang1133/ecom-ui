@@ -14,7 +14,6 @@ export const getPayments = createAsyncThunk('payment/getpayments', async (payloa
     const { axiosJWT } = payload;
     try {
         const res = await axiosJWT.get(`payments`);
-        console.log(res);
         return res.data;
     } catch (err) {
         return thunkAPI.rejectWithValue(err.response.data.msg);

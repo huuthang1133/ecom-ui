@@ -5,6 +5,7 @@ import styles from './Cart.module.scss';
 import Button from '~/components/Button';
 import { createAxios } from '~/ultils/authenticated';
 import { CheckOut } from '~/redux/toolkit/cartSlice';
+import { useCallback } from 'react';
 
 const cx = classNames.bind(styles);
 function Cart() {
@@ -14,10 +15,14 @@ function Cart() {
     const { data } = cartState;
     let axiosJWT = createAxios(authState, dispatch);
 
-    const handleCheckOut = async (e) => {
-        e.preventDefault();
-        dispatch(CheckOut({ axiosJWT, cartState, dispatch }));
-    };
+    const handleCheckOut = useCallback(() => {
+        const handler = (e) => {
+            e.preventDefault();
+            dispatch(CheckOut({ axiosJWT }));
+        };
+        handler();
+    }, []);
+
     if (!cartState.data.length) return <h1>Cart Empty</h1>;
     return (
         <div className={cx('container')}>

@@ -1,26 +1,33 @@
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
+import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 import Button from '~/components/Button';
+import { addCart } from '~/redux/toolkit/cartSlice';
 import { deleteProduct } from '~/redux/toolkit/productSlice';
 import { createAxios } from '~/ultils/authenticated';
 import styles from './ProductCard.module.scss';
 
 const cx = classNames.bind(styles);
 
-function ProductCard({ disabled, product, NoButton = false, to = false, onClick }) {
+function ProductCard({ disabled, product, NoButton = false, to = false }) {
     const { _id, title, price, images, description } = product;
 
     const authState = useSelector((state) => state.authState);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     let axiosJWT = createAxios(authState, dispatch);
 
-    const handleDeleteProduct = (e) => {
+    const handleDeleteProduct = useCallback(() => {
         dispatch(deleteProduct({ axiosJWT, _id, dispatch }));
-    };
+    }, []);
+
+    const handleAddToCart = useCallback(() => {
+        dispatch(addCart({ product, axiosJWT, navigate, dispatch }));
+    }, []);
 
     const classes = cx('product-description', {
         to,
@@ -57,7 +64,7 @@ function ProductCard({ disabled, product, NoButton = false, to = false, onClick 
                             <></>
                         ) : (
                             <>
-                                <Button disabled={disabled} onClick={() => onClick(product)}>
+                                <Button key={_id} disabled={disabled} onClick={handleAddToCart}>
                                     ADD TO CART
                                 </Button>
                                 <Button to={`/products/${_id}`}>VIEW </Button>
@@ -98,7 +105,7 @@ function ProductCard({ disabled, product, NoButton = false, to = false, onClick 
                             </>
                         ) : (
                             <>
-                                <Button disabled={disabled} onClick={() => onClick(product)}>
+                                <Button key={_id} disabled={disabled} onClick={handleAddToCart}>
                                     ADD TO CART
                                 </Button>
                                 <Button to={`/products/${_id}`}>VIEW </Button>
@@ -111,4 +118,4 @@ function ProductCard({ disabled, product, NoButton = false, to = false, onClick 
     );
 }
 
-export default ProductCard;
+export default memo(ProductCard);

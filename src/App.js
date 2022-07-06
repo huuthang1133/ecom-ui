@@ -4,14 +4,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import DefaultLayout from './components/Layout/DefaultLayout';
 import { getCategories } from './redux/toolkit/categorySlice';
-import { getProducts } from './redux/toolkit/productSlice';
 import { adminRoutes, PrivateRoute, privateRoutes, publicRoutes } from './routes';
 import AdminRoute from './routes/AdminRoute';
 function App() {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getProducts());
         dispatch(getCategories());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
     return (
         <Router>
