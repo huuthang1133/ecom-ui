@@ -1,6 +1,37 @@
-# Getting Started with Create React App
+# This is Pet Project -ECOM-UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is MERN stack application. It is a small social network app that includes authentications with jsonwebtoken, posts, get, patch, put.
+
+## Functionality
+
+### Auth
+
+-   Login User
+-   Register User
+-   Refresh User
+
+### Get
+
+-   Get User
+-   Get ProductById / Get Products
+-   Get Payment/Payments
+-   Get Category
+
+### Post
+
+-   Post Product
+-   Post Category
+
+### Delete
+
+-   Delete Product
+-   Delete Category
+
+### Product
+
+-   Filter
+-   Loadmore
+-   Sort
 
 ## Available Scripts
 
@@ -39,32 +70,24 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Link Demo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[https://fluffy-dodol-094777.netlify.app/](ECOM-UI)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   Admin:
 
-### Code Splitting
+```
+{email: admin@gmail.com, password: '123456789' }
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+-   User
 
-### Analyzing the Bundle Size
+```
+{email: thang@gmail.com, password: '123456789' }
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Backend Server
 
-### Making a Progressive Web App
+[https://pj-ecommerce-server.herokuapp.com/api](ECOM-SERVER)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Github: [https://github.com/huuthang1133/ecom-server](Ecom-server)
