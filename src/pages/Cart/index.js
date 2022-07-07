@@ -21,6 +21,7 @@ function Cart() {
             dispatch(CheckOut({ axiosJWT }));
         };
         handler();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (!cartState.data.length) return <h1>Cart Empty</h1>;
