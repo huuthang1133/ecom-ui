@@ -42,7 +42,6 @@ function Home() {
         category: [category, setCategory],
     };
 
-    console.log('Home...');
     return (
         <div className={cx('wrapper')}>
             <Filter props={props} />

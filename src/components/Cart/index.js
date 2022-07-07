@@ -36,9 +36,12 @@ function CartItem({ product }) {
     };
     return (
         <div className={cx('container')}>
-            <img src={images.url} alt="" />
+            <div className={cx('image')}>
+                <img src={images.url} alt="" />
+            </div>
             <div className={cx('box-product')}>
                 <h4 className={cx('product-title')}>{title}</h4>
+
                 <div className={cx('product-price')}>
                     <div className={cx('product-price-beforesale')}>{price}$</div>
                     <div className={cx('product-price-aftersale')}>{price}$</div>
