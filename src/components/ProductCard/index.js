@@ -22,11 +22,13 @@ function ProductCard({ disabled, product, NoButton = false, to = false }) {
     let axiosJWT = createAxios(authState, dispatch);
 
     const handleDeleteProduct = useCallback(() => {
-        dispatch(deleteProduct({ axiosJWT, _id, dispatch }));
+        dispatch(deleteProduct({ axiosJWT, _id }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleAddToCart = useCallback(() => {
-        dispatch(addCart({ product, axiosJWT, navigate, dispatch }));
+        dispatch(addCart({ product, axiosJWT, navigate }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const classes = cx('product-description', {

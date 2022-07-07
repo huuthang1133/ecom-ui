@@ -19,14 +19,15 @@ export const getProducts = createAsyncThunk('products/getProducts', async (paylo
 });
 
 export const deleteProduct = createAsyncThunk(`products/deleteProduct`, async (payload, thunkAPI) => {
+    const { dispatch, rejectWithValue } = thunkAPI;
     try {
-        const { _id, axiosJWT, dispatch } = payload;
+        const { _id, axiosJWT } = payload;
         const res = await axiosJWT.delete(`products/${_id}`);
         dispatch(getProducts());
         notifySuccess(res.data.msg);
     } catch (err) {
         notifyError(err.response.data.msg);
-        return thunkAPI.rejectWithValue(err.response.data.msg);
+        return rejectWithValue(err.response.data.msg);
     }
 });
 

@@ -6,7 +6,7 @@ import styles from './Information.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Information({ user, state }) {
+function Information({ user }) {
     const [openEditor, setOpenEditor] = useState(false);
 
     return (
@@ -19,10 +19,10 @@ function Information({ user, state }) {
                     </Button>
                 </div>
                 <div>
-                    Your name: <span> {user.name}</span>
+                    Your name: <span> {user?.name}</span>
                 </div>
                 <div>
-                    Your email:<span> {user.email}</span>
+                    Your email:<span> {user?.email}</span>
                 </div>
             </div>
             {openEditor && <Auth modal setOpenEditor={setOpenEditor} />}

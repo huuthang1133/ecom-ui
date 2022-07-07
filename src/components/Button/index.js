@@ -19,7 +19,6 @@ function Button({
     normal,
     ...passProps
 }) {
-    console.log('button');
     let Comp = 'button';
 
     const props = {

@@ -16,7 +16,7 @@ function OrderHistory({ authState }) {
     let axiosJWT = createAxios(authState, dispatch);
 
     useEffect(() => {
-        if (_user.role === 1) {
+        if (_user?.role === 1) {
             dispatch(getPayments({ axiosJWT }));
         } else dispatch(getPayment({ axiosJWT }));
         // eslint-disable-next-line react-hooks/exhaustive-deps

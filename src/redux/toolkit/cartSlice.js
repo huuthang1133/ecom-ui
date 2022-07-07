@@ -14,8 +14,8 @@ export const addCart = createAsyncThunk('cart/addcart', async (payload, { getSta
     try {
         const res = await axiosJWT.get('infor');
         const { data } = res;
+        const { cartState } = getState();
         if (data) {
-            const { cartState } = getState();
             const index = cartState.data.findIndex((_product) => _product._id === product._id);
             if (index > -1) {
                 const newCart = cartState.data.map((_product, i) => {

@@ -1,21 +1,16 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { authenticate } from '~/redux/toolkit/authSlice';
-import { createAxios } from '~/ultils/authenticated';
 
 function PrivateRoute({ children }) {
-    const authState = useSelector((state) => state.authState);
-    const { error } = authState;
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    let axiosJWT = createAxios(authState, dispatch);
     const params = 'infor';
     useEffect(() => {
-        dispatch(authenticate({ params, axiosJWT, navigate, dispatch }));
+        dispatch(authenticate({ params, navigate }));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    if (error?.length) <Navigate to="/login" />;
+    }, [dispatch]);
     return <>{children}</>;
 }
 

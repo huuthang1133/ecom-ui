@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAxios } from '~/ultils/authenticated';
 import * as httpRequest from '~/ultils/httpRequest';
 import { notifyError, notifySuccess } from '~/ultils/notify';
 
@@ -48,31 +49,37 @@ export const userRegister = createAsyncThunk('auth/register', async (payload, th
     }
 });
 
-export const authenticate = createAsyncThunk('auth/authenticate', async (payload, { dispatch, rejectWithValue }) => {
-    const { params, axiosJWT, navigate } = payload;
-    if (params === 'infor') {
-        try {
-            const res = await axiosJWT.get(params);
-            return res.data;
-        } catch (err) {
-            dispatch(logout());
-            navigate('/login');
-            if (!err.response) {
-                return rejectWithValue(err.message);
-            } else return rejectWithValue(err.response.data.msg);
+export const authenticate = createAsyncThunk(
+    'auth/authenticate',
+    async (payload, { getState, dispatch, rejectWithValue }) => {
+        const authState = getState().authState;
+        let axiosJWT = createAxios(authState, dispatch);
+
+        const { params, navigate } = payload;
+        if (params === 'infor') {
+            try {
+                const res = await axiosJWT.get(params);
+                return res.data;
+            } catch (err) {
+                dispatch(logout());
+                navigate('/login');
+                if (!err.response) {
+                    return rejectWithValue(err.message);
+                } else return rejectWithValue(err.response.data.msg);
+            }
+        } else {
+            try {
+                const res = await axiosJWT.get(params);
+                return res.data;
+            } catch (err) {
+                navigate('/');
+                if (!err.response) {
+                    return rejectWithValue(err.message);
+                } else return rejectWithValue(err.response.data.msg);
+            }
         }
-    } else {
-        try {
-            const res = await axiosJWT.get(params);
-            return res.data;
-        } catch (err) {
-            navigate('/');
-            if (!err.response) {
-                return rejectWithValue(err.message);
-            } else return rejectWithValue(err.response.data.msg);
-        }
-    }
-});
+    },
+);
 
 const initialState = {
     data: {},
