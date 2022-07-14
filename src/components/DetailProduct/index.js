@@ -30,29 +30,56 @@ function DetailProduct() {
 
     useEffect(() => {
         if (id) {
-            if (products.length) {
-                const detailProduct = products.find((_product) => _product._id === id);
-                if (!detailProduct) {
-                    const fetchProduct = async () => {
-                        try {
-                            const res = await httpRequest.get(`/product/${id}`);
-                            setProduct(res.data);
-                        } catch (err) {
-                            alert(err.response.data.msg);
+            let detailProduct = products?.find((_product) => _product._id === id);
+            if (!detailProduct) {
+                const fetchProduct = async () => {
+                    try {
+                        const res = await httpRequest.get(`/product/${id}`);
+                        detailProduct = res.data;
+                        const index = detailProduct?.category.products.findIndex((product) => product._id === id);
+                        if (index >= 0) {
+                            const _related = [...detailProduct?.category.products];
+                            _related.splice(index, 1);
+                            setRelatedProducts(_related);
                         }
-                    };
-                    fetchProduct();
-                }
-                setProduct(detailProduct);
-                if (detailProduct) {
-                    const index = detailProduct.category.products.findIndex((product) => product._id === id);
-                    if (index >= 0) {
-                        const _related = [...detailProduct.category.products];
-                        _related.splice(index, 1);
-                        setRelatedProducts(_related);
+                        setProduct(res.data);
+                    } catch (err) {
+                        alert(err.response.data.msg);
                     }
-                }
+                };
+                fetchProduct();
             }
+            setProduct(detailProduct);
+            const index = detailProduct?.category.products.findIndex((product) => product._id === id);
+            if (index >= 0) {
+                const _related = [...detailProduct?.category.products];
+                _related.splice(index, 1);
+                setRelatedProducts(_related);
+            }
+
+            // if (products.length) {
+            //     const detailProduct = products.find((_product) => _product._id === id);
+            //     if (!detailProduct) {
+            //         const fetchProduct = async () => {
+            //             try {
+            //                 const res = await httpRequest.get(`/product/${id}`);
+            //                 setProduct(res.data);
+            //             } catch (err) {
+            //                 alert(err.response.data.msg);
+            //             }
+            //         };
+            //         fetchProduct();
+            //     }
+            //     setProduct(detailProduct);
+            //     if (detailProduct) {
+            //         const index = detailProduct.category.products.findIndex((product) => product._id === id);
+            //         if (index >= 0) {
+            //             const _related = [...detailProduct.category.products];
+            //             _related.splice(index, 1);
+            //             setRelatedProducts(_related);
+            //         }
+            //     }
+            // }
         }
     }, [id, products]);
 

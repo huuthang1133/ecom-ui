@@ -26,9 +26,9 @@ function Home() {
         if (debounceValue?.length || sort || page !== 1 || category) {
             dispatch(getProducts({ sort, limit: page * 9, 'title[regex]': debounceValue, category }));
         }
-        if (!debounceValue.trim().length && products?.length < 9) {
-            dispatch(getProducts());
-        }
+        // if (!debounceValue.trim().length && products?.length < 9) {
+        //     dispatch(getProducts());
+        // }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, debounceValue, sort, page, category]);
 
